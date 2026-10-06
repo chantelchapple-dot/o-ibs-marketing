@@ -1,0 +1,8 @@
+{
+  "Content-Security-Policy": "default-src 'self'; script-src 'self' 'sha256-W7EAi9gtNKpwaoUmZaUO+I1JdQKVWhP/Xm2oOS6VbNs='; style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'none'",
+  "X-Content-Type-Options": "nosniff",
+  "Referrer-Policy": "strict-origin-when-cross-origin",
+  "X-Frame-Options": "DENY",
+  "Permissions-Policy": "camera=(), microphone=(), geolocation=(), payment=()",
+  "Strict-Transport-Security": "max-age=31536000"
+}

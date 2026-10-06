@@ -1,0 +1,68 @@
+{
+  "scores": {
+    "performance": 100,
+    "accessibility": 100,
+    "best-practices": 100,
+    "seo": 100
+  },
+  "updatedFiles": [
+    "scripts/build.mjs",
+    "scripts/serve.mjs",
+    "scripts/test.mjs",
+    "src/site.js",
+    "src/home-dashboard.mjs",
+    "src/home-dashboard.css",
+    ".env.example",
+    ".gitignore",
+    "package.json",
+    "README.md",
+    "qa/QA.md"
+  ],
+  "newFiles": [
+    "src/config.mjs",
+    "src/contact-page.mjs",
+    "src/contact-contract.mjs",
+    "src/contact.js",
+    "src/legal-pages.mjs",
+    "src/readiness.css",
+    "scripts/brand-assets.mjs",
+    "scripts/lint.mjs",
+    "scripts/readiness-qa.mjs",
+    "scripts/release-check.mjs",
+    "eslint.config.mjs",
+    ".env.server.example",
+    "RELEASE.md",
+    "src/assets/o-ibs-logo-display.jpeg",
+    "src/assets/favicon-32.png",
+    "src/assets/favicon-48.png",
+    "src/assets/apple-touch-icon.png",
+    "src/assets/icon-192.png",
+    "src/assets/icon-512.png",
+    "src/assets/social-share.png",
+    "src/assets/brand-provenance.json"
+  ],
+  "responsiveChecks": 84,
+  "axeViolations": 0,
+  "publicLinks": 439,
+  "publicFilesScanned": 24,
+  "runtimeDependencies": 0,
+  "qaDependencyAdvisories": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0
+  },
+  "releaseReady": false,
+  "previews": [
+    "readiness-home-1440.png",
+    "readiness-home-390.png",
+    "readiness-bizzy.png",
+    "readiness-features.png",
+    "readiness-pricing.png",
+    "readiness-contact.png",
+    "readiness-footer.png",
+    "readiness-legal.png",
+    "readiness-404.png"
+  ]
+}

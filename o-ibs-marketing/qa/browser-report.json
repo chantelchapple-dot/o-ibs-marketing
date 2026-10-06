@@ -1,0 +1,66 @@
+{
+  "widths": [
+    {
+      "width": 1920,
+      "content": 1920
+    },
+    {
+      "width": 1440,
+      "content": 1440
+    },
+    {
+      "width": 1024,
+      "content": 1024
+    },
+    {
+      "width": 768,
+      "content": 768
+    },
+    {
+      "width": 430,
+      "content": 430
+    },
+    {
+      "width": 390,
+      "content": 390
+    },
+    {
+      "width": 360,
+      "content": 360
+    }
+  ],
+  "routes": [
+    "product",
+    "bizzy",
+    "features",
+    "pricing",
+    "about",
+    "contact",
+    "security",
+    "help",
+    "privacy",
+    "terms",
+    "popia"
+  ],
+  "checks": {
+    "mobileNavigation": true,
+    "bizzyExamples": true,
+    "contactDisabled": true,
+    "accessibilityBasics": {
+      "unnamedLinks": 0,
+      "unlabelledFields": 0,
+      "mainLandmarks": 1,
+      "skipLink": true
+    },
+    "images": true,
+    "keyboardFocus": true,
+    "reducedMotion": true
+  },
+  "errors": [],
+  "failedRequests": [],
+  "localTiming": {
+    "domContentLoadedMs": 117,
+    "loadMs": 118,
+    "transferBytes": 352012
+  }
+}

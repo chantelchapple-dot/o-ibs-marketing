@@ -1,0 +1,16 @@
+{
+  "name": "o-ibs-marketing",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "node scripts/serve.mjs",
+    "test": "node scripts/test.mjs",
+    "build:production": "node scripts/build.mjs --production",
+    "lint": "node scripts/lint.mjs",
+    "test:browser": "node scripts/readiness-qa.mjs",
+    "assets": "node scripts/brand-assets.mjs",
+    "release:check": "node scripts/release-check.mjs"
+  }
+}

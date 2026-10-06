@@ -1,0 +1,20 @@
+{
+  "widths": [
+    {
+      "width": 1440,
+      "content": 1440
+    },
+    {
+      "width": 390,
+      "content": 390
+    },
+    {
+      "width": 360,
+      "content": 360
+    }
+  ],
+  "unchangedExistingFiles": 19,
+  "errors": [],
+  "failedRequests": [],
+  "syntheticReceivablesTotal": 25400
+}

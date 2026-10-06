@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://o-ibs.co.za/sitemap.xml

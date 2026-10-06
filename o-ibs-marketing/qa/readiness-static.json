@@ -1,0 +1,12 @@
+{
+  "routes": 12,
+  "localLinksAndAssets": 439,
+  "publicTextFilesScanned": 24,
+  "secretPatternsFound": 0,
+  "privateDataPatternsFound": 0,
+  "defaultContactEnabled": false,
+  "defaultTrialReady": false,
+  "configurationNegativeCases": 8,
+  "contactValidationChecks": 5,
+  "runtimeDependencies": 0
+}
