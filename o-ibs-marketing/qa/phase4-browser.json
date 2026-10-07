@@ -1,0 +1,25 @@
+{
+  "widths": [
+    360,
+    375,
+    390,
+    430,
+    768,
+    1440
+  ],
+  "routes": [
+    "/",
+    "product",
+    "features",
+    "bizzy",
+    "pricing",
+    "faq",
+    "early-access",
+    "contact"
+  ],
+  "keyboard": true,
+  "formsNotSubmitted": true,
+  "faqCount": 17,
+  "noExternalRequests": true,
+  "responsiveChecks": 48
+}
