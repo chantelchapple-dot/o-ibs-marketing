@@ -1,0 +1,33 @@
+{
+  "localOnly": true,
+  "productionBuild": true,
+  "lint": true,
+  "staticRoutes": 16,
+  "linksAssets": 710,
+  "seoSchemaSecurityPrivacy": true,
+  "applicationEntitlementChecks": 138,
+  "backendAndTemplateTests": 34,
+  "websiteResponsiveChecks": 160,
+  "websiteAccessibilityAudits": 38,
+  "websiteAccessibilityViolations": 0,
+  "emailRenderingChecks": 32,
+  "emailNoCssFallbackChecks": 8,
+  "emailAccessibilityAudits": 8,
+  "emailAccessibilityViolations": 0,
+  "faqKeyboardQuestions": 17,
+  "noExternalRequests": true,
+  "providerMocked": true,
+  "liveEmailsSent": 0,
+  "homepageHTMLBytes": 32731,
+  "homepageResourceBytes": 64568,
+  "websiteRuntimeAndConfigurationUnchanged": true,
+  "actualInboxClientCompatibility": "Not tested in this local phase; requires separate approved controlled acceptance.",
+  "coreWebVitals": "No field CWV measurement or certification.",
+  "customerEmailRefinement": {
+    "simpleSupport": true,
+    "friendlyFooterOnce": true,
+    "canonicalReceiptUnchanged": true,
+    "canonicalReceiptNotDisplayed": true,
+    "lengthTestsRetained": true
+  }
+}

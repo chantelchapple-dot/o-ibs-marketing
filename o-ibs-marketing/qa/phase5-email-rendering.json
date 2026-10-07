@@ -1,0 +1,12 @@
+{
+  "syntheticOnly": true,
+  "templates": 8,
+  "renderChecks": 32,
+  "noCssChecks": 8,
+  "accessibilityAudits": 8,
+  "violations": [],
+  "realEmailSent": false,
+  "noExternalRequests": true,
+  "totalHTMLBytes": 21018,
+  "scope": "Browser and CSS-stripped fallback checks; not actual Outlook/Gmail inbox certification."
+}
