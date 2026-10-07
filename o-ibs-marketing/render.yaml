@@ -1,0 +1,47 @@
+{
+  "services": [
+    {
+      "type": "web",
+      "name": "o-ibs-marketing",
+      "runtime": "static",
+      "repo": "https://github.com/chantelchapple-dot/o-ibs-marketing",
+      "branch": "master",
+      "rootDir": "o-ibs-marketing",
+      "buildCommand": "node scripts/build.mjs --production",
+      "staticPublishPath": "dist",
+      "autoDeployTrigger": "commit",
+      "headers": [
+        {
+          "path": "/*",
+          "name": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'sha256-PNiqc4A0+3/Z1ZgLTHWRQAmcBJgr4TYbIF3JDQlMyAM='; style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self'; connect-src 'self' https://o-ibs-marketing-forms.onrender.com; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'none'"
+        },
+        {
+          "path": "/*",
+          "name": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "path": "/*",
+          "name": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "path": "/*",
+          "name": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "path": "/*",
+          "name": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(), payment=()"
+        },
+        {
+          "path": "/*",
+          "name": "Strict-Transport-Security",
+          "value": "max-age=31536000"
+        }
+      ]
+    }
+  ]
+}

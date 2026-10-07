@@ -13,6 +13,11 @@ const escape=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;'
 validateSocialProfiles(officialSocialProfiles);
 const config=readConfig();
 const {origin,app,trial}=config;
+// The production policy prepares only the approved marketing backend; this does not enable forms.
+const approvedFormsOrigin='https://o-ibs-marketing-forms.onrender.com';
+if(process.argv.includes('--production')&&config.formsUrl&&config.formsUrl!==approvedFormsOrigin)throw Error('Production forms require the approved marketing backend');
+const policyFormsOrigin=config.formsUrl||approvedFormsOrigin;
+
 if(process.argv.includes('--production'))for(const value of [origin,app,trial,config.formsUrl].filter(Boolean))if(new URL(value).protocol!=='https:'||['localhost','127.0.0.1','[::1]'].includes(new URL(value).hostname))throw Error('Production public URLs must use HTTPS and cannot be local');
 const trialLabel=trial?'Start Free Trial':'Start Early Access';
 const trialHref=escape(trial||'/early-access'),signHref=escape(app||'/help#sign-in');
@@ -83,10 +88,15 @@ fs.writeFileSync('dist/sitemap.xml',`<?xml version="1.0" encoding="UTF-8"?><urls
 fs.writeFileSync('dist/robots.txt',`User-agent: *\nAllow: /\nSitemap: ${origin}/sitemap.xml\n`);
 for(const [status,title,copy] of [[404,'This page could not be found.','Check the address or return to the homepage to explore O-IBS.'],[500,'Something went wrong.','Please try again later. No internal error details are shown here.']]){fs.writeFileSync('dist/'+status+'.html',`<!doctype html><html lang="en-ZA"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,follow"><title>${status} | O-IBS</title><link rel="icon" href="/assets/favicon-32.png"><link rel="stylesheet" href="/assets/site.css"><link rel="stylesheet" href="/assets/product-reference.css"><link rel="stylesheet" href="/assets/readiness.css"><script defer src="/assets/site.js"></script></head><body>${header('')}<main id="main" class="error-content">${pageHero(String(status),title,copy)}<div class="wrap"><div class="actions"><a class="btn gold" href="/">Go to homepage</a><a class="btn" href="/contact">Contact</a></div></div></main>${footer()}</body></html>`);}
 const schemaContent=JSON.stringify(structuredData(origin,pages[''][1])).replace(/</g,'\\u003c');
-const csp="default-src 'self'; script-src 'self' 'sha256-"+crypto.createHash('sha256').update(schemaContent).digest('base64')+"'; style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self'; connect-src 'self'"+(config.formsUrl?' '+config.formsUrl:'')+"; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'none'";
+const csp="default-src 'self'; script-src 'self' 'sha256-"+crypto.createHash('sha256').update(schemaContent).digest('base64')+"'; style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self'; connect-src 'self'"+' '+policyFormsOrigin+"; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'none'";
 const headers={'Content-Security-Policy':csp,'X-Content-Type-Options':'nosniff','Referrer-Policy':'strict-origin-when-cross-origin','X-Frame-Options':'DENY','Permissions-Policy':'camera=(), microphone=(), geolocation=(), payment=()','Strict-Transport-Security':'max-age=31536000'};
 fs.writeFileSync('dist/_headers','/*\n'+Object.entries(headers).map(([key,value])=>'  '+key+': '+value).join('\n')+'\n');
 fs.writeFileSync('qa/security-headers.json',JSON.stringify(headers,null,2));
+if(process.argv.includes('--production')){
+ const blueprint={services:[{type:'web',name:'o-ibs-marketing',runtime:'static',repo:'https://github.com/chantelchapple-dot/o-ibs-marketing',branch:'master',rootDir:'o-ibs-marketing',buildCommand:'node scripts/build.mjs --production',staticPublishPath:'dist',autoDeployTrigger:'commit',headers:Object.entries(headers).map(([name,value])=>({path:'/*',name,value}))}]};
+ // JSON is valid YAML. Keep the Render Blueprint and preview headers generated from one policy.
+ fs.writeFileSync('render.yaml',JSON.stringify(blueprint,null,2)+'\n');
+}
 fs.writeFileSync('qa/release-readiness.json',JSON.stringify({productionExport:process.argv.includes('--production'),releaseReady:false,issues:config.releaseIssues,trialReady:config.trialReady,contactEnabled:config.contactEnabled,externalApplicationRequestsMade:false},null,2));
 
 console.log(`Built ${Object.keys(pages).length} static routes. No application services or databases connected.`);
