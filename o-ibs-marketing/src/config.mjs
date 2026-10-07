@@ -1,3 +1,4 @@
+import {company} from './company.mjs';
 import fs from 'node:fs';
 export function readConfig(overrides={}){
   const local={};
@@ -17,17 +18,19 @@ export function readConfig(overrides={}){
   if(new URL(origin).pathname!=='/'||new URL(origin).hash)throw Error('PUBLIC_SITE_URL must be an origin without a path');
   const app=publicUrl('PUBLIC_APP_URL'),trial=publicUrl('PUBLIC_TRIAL_URL');
   const trialReady=enabled('PUBLIC_TRIAL_READY');if(trialReady&&!trial)throw Error('Approved trial access requires PUBLIC_TRIAL_URL');
+  const formsUrl=publicUrl('PUBLIC_FORMS_API_URL');if(formsUrl){const u=new URL(formsUrl);if(u.pathname!=='/'||u.hash||(!u.hostname.endsWith('.onrender.com')&&!['127.0.0.1','localhost'].includes(u.hostname)))throw Error('Form backend must be an isolated Render origin');}
+  const formsEnabled=enabled('PUBLIC_FORMS_ENABLED');if(formsEnabled&&!formsUrl)throw Error('Enabled forms require PUBLIC_FORMS_API_URL');
   const contactEndpoint=get('PUBLIC_CONTACT_ENDPOINT');
   if(contactEndpoint&&!/^\/api\/[a-zA-Z0-9/_-]+$/.test(contactEndpoint))throw Error('Contact endpoint must be an approved same-origin /api/ path');
-  const contactEnabled=enabled('PUBLIC_CONTACT_ENABLED');if(contactEnabled&&!contactEndpoint)throw Error('Enabled contact service requires an approved endpoint');
+  const contactEnabled=formsEnabled||enabled('PUBLIC_CONTACT_ENABLED');if(contactEnabled&&!formsEnabled&&!contactEndpoint)throw Error('Enabled contact service requires an approved endpoint');
   const addressesApproved=enabled('PUBLIC_CONTACT_ADDRESSES_APPROVED');
   const address=key=>{const value=get(key);if(value&&!/^[a-zA-Z0-9._+-]+@o-ibs\.co\.za$/i.test(value))throw Error(`${key} must be an approved O-IBS domain address`);return addressesApproved?value:'';};
-  const contactEmail=address('PUBLIC_CONTACT_EMAIL'),supportEmail=address('PUBLIC_SUPPORT_EMAIL'),privacyEmail=address('PUBLIC_PRIVACY_EMAIL');
+  const contactEmail=address('PUBLIC_CONTACT_EMAIL'),supportEmail=company.supportEmail,privacyEmail=address('PUBLIC_PRIVACY_EMAIL');
   const releaseIssues=[];
   if(!app)releaseIssues.push('Approved production sign-in URL is missing.');
-  if(!trialReady)releaseIssues.push('Public onboarding is not open; Start Early Access leads to the unavailable enquiry preview.');
-  if(!contactEnabled&&!contactEmail)releaseIssues.push('Neither an approved enquiry service nor a confirmed contact address is configured.');
-  releaseIssues.push('Final legal policies and the responsible legal entity/contact details need professional approval.');
-  releaseIssues.push('Plan details remain provisional; final commercial availability, pricing and limits need approval.');
-  return {origin,app,trial:trialReady?trial:'',trialReady,contactEndpoint:contactEnabled?contactEndpoint:'',contactEnabled,contactEmail,supportEmail,privacyEmail,releaseIssues};
+  if(!trialReady)releaseIssues.push('Public onboarding is not open; Start Early Access uses a reviewed invitation-based application journey; public registration is closed.');
+  if(!contactEnabled)releaseIssues.push('Online enquiries and early-access applications have no active secure delivery/storage service. Email support is available.');
+  releaseIssues.push('Final legal policies, Information Officer governance, PAIA manual and privacy procedures need professional approval.');
+  releaseIssues.push('Monthly prices are approved; public paid access and final subscription/cancellation terms are not approved.');
+  return {formsEnabled,formsUrl:formsEnabled?formsUrl:'',origin,app,trial:trialReady?trial:'',trialReady,contactEndpoint:contactEnabled?contactEndpoint:'',contactEnabled,contactEmail,supportEmail,privacyEmail,releaseIssues};
 }

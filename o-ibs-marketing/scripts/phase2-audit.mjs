@@ -1,0 +1,24 @@
+import fs from 'node:fs';
+import crypto from 'node:crypto';
+import assert from 'node:assert/strict';
+import {execFileSync} from 'node:child_process';
+const routes=['','product','bizzy','features','pricing','about','contact','security','help','ai-data','privacy','terms','popia','paia','early-access'];
+const mainHashes=new Set();
+const headers=fs.readFileSync('dist/_headers','utf8'),sitemap=fs.readFileSync('dist/sitemap.xml','utf8');
+for(const route of routes){const html=fs.readFileSync(`dist/${route?route+'/':''}index.html`,'utf8'),canonical='https://o-ibs.co.za/'+route;
+ const main=html.match(/<main id="main">([^]*?)<\/main>/)[1],mainHash=crypto.createHash('sha256').update(main).digest('hex');assert(!mainHashes.has(mainHash),'No duplicate full page bodies');mainHashes.add(mainHash);
+ assert(html.includes(`rel="canonical" href="${canonical}"`));assert(html.includes(`property="og:url" content="${canonical}"`));assert(html.includes('Registration number: 2026/798906/07'));
+ const raw=html.match(/<script type="application\/ld\+json">([^]*?)<\/script>/)[1],data=JSON.parse(raw),org=data['@graph'].find(n=>n['@type']==='Organization'),site=data['@graph'].find(n=>n['@type']==='WebSite');
+ assert.equal(data['@context'],'https://schema.org');assert.equal(org.name,'O-IBS');assert.equal(org.legalName,'O-IBS');assert.equal(org.identifier.value,'2026/798906/07');assert.equal(org.areaServed.name,'South Africa');assert.equal(site.publisher['@id'],org['@id']);assert(!/aggregateRating|reviewCount|price|award|telephone|email|streetAddress|taxID|vatID/.test(raw));
+ assert(headers.includes('sha256-'+crypto.createHash('sha256').update(raw).digest('base64')),'CSP must permit the exact structured data');
+ if(['privacy','terms','popia','paia'].includes(route)){assert(html.includes('noindex,follow'));assert(!sitemap.includes(`<loc>${canonical}</loc>`));}else assert(sitemap.includes(`<loc>${canonical}</loc>`));
+ assert(!/\b\d{13}\b|srv-[a-z0-9]+|bucket[ -]name|database[ -]password/i.test(html),'No private identifiers or internal service details');
+}
+const home=fs.readFileSync('dist/index.html','utf8'),old=execFileSync('git',['-c','safe.directory=C:/Users/chant/Documents/ChatGPT/Website','show','HEAD:o-ibs-marketing/dist/index.html'],{encoding:'utf8'});
+assert.deepEqual([...home.matchAll(/<section class="([^"]+)"/g)].map(m=>m[1]),[...old.matchAll(/<section class="([^"]+)"/g)].map(m=>m[1]),'Approved homepage section layout preserved');
+assert(home.includes('Your business.<br><span>One intelligent system.</span>'));
+for(const file of ['site.css','home-dashboard.css','home-dashboard.mjs','product-reference.css'])assert.equal(fs.readFileSync('src/'+file,'utf8').replaceAll('\r\n','\n'),execFileSync('git',['-c','safe.directory=C:/Users/chant/Documents/ChatGPT/Website','show','HEAD:o-ibs-marketing/src/'+file],{encoding:'utf8'}).replaceAll('\r\n','\n'),'Approved branding/dashboard unchanged');
+assert.match(fs.readFileSync('dist/paia/index.html','utf8'),/This status page is not a PAIA manual/);assert(!fs.existsSync('dist/assets/legal/o-ibs-paia-manual.pdf'));
+assert.match(fs.readFileSync('dist/terms/index.html','utf8'),/DRAFT — PROFESSIONAL LEGAL REVIEW REQUIRED BEFORE PUBLIC PAID LAUNCH/);
+for(const kind of ['privacy','terms','popia'])assert.match(fs.readFileSync(`dist/${kind}/index.html`,'utf8'),/The short version/);
+const report={routes:routes.length,canonicalAndSocialUrls:true,duplicateFullPageBodies:false,organizationAndWebsiteSchema:true,cspHashes:true,homepageStructureAndBrandPreserved:true,paiaIsStatusOnly:true,legalStatusExplicit:true,noPrivateIdentifiersFound:true,richResultEligibilityClaimed:false};fs.writeFileSync('qa/phase2-seo-trust.json',JSON.stringify(report,null,2));console.log('PASS: Phase 2 company identity, SEO URLs, schema shape/references, CSP hashes, legal status and preserved homepage design.');

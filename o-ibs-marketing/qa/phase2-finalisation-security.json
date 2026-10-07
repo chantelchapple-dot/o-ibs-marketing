@@ -1,0 +1,46 @@
+{
+  "scope": "Local preview unavailable endpoint checks; no deployed backend exists",
+  "checks": [
+    {
+      "method": "POST",
+      "status": 503,
+      "accepted": false
+    },
+    {
+      "method": "PUT",
+      "status": 503,
+      "accepted": false
+    },
+    {
+      "method": "PATCH",
+      "status": 503,
+      "accepted": false
+    },
+    {
+      "method": "DELETE",
+      "status": 503,
+      "accepted": false
+    },
+    {
+      "method": "OPTIONS",
+      "status": 503,
+      "accepted": false
+    },
+    {
+      "method": "GET",
+      "route": "api/early-access",
+      "status": 404
+    },
+    {
+      "method": "GET",
+      "route": "api/contact",
+      "status": 404
+    }
+  ],
+  "repeatedRequests": 20,
+  "falseAcceptance": 0,
+  "serverValidationAndInjectionAndRateLimitTests": "BLOCKED: no implemented/deployed form backend",
+  "configuredSecretValuesRead": false,
+  "externalSubmissionsSent": false,
+  "applicationDatabaseConnected": false
+}

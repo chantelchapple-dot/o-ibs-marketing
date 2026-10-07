@@ -1,0 +1,12 @@
+{
+  "routes": 15,
+  "canonicalAndSocialUrls": true,
+  "duplicateFullPageBodies": false,
+  "organizationAndWebsiteSchema": true,
+  "cspHashes": true,
+  "homepageStructureAndBrandPreserved": true,
+  "paiaIsStatusOnly": true,
+  "legalStatusExplicit": true,
+  "noPrivateIdentifiersFound": true,
+  "richResultEligibilityClaimed": false
+}

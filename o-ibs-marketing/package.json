@@ -11,6 +11,8 @@
     "lint": "node scripts/lint.mjs",
     "test:browser": "node scripts/readiness-qa.mjs",
     "assets": "node scripts/brand-assets.mjs",
-    "release:check": "node scripts/release-check.mjs"
+    "release:check": "node scripts/release-check.mjs",
+    "test:forms": "node --test forms-service/*.test.mjs",
+    "test:forms:browser": "node scripts/forms-browser-qa.mjs"
   }
 }

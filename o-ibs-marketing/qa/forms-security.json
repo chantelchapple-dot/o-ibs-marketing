@@ -1,0 +1,23 @@
+{
+  "serverTestGroups": 7,
+  "serverValidation": true,
+  "attachmentsRejected": true,
+  "methodsAndOriginsEnforced": true,
+  "htmlEscaped": true,
+  "headerInjectionRejected": true,
+  "limitsPersistAcrossRestart": false,
+  "providerErrorsAndTimeoutsNeverSucceed": true,
+  "malformedProviderResponseRejected": true,
+  "noPayloadStorage": true,
+  "noPayloadLogging": true,
+  "appDatabaseIntegration": false,
+  "realCredentialsUsed": false,
+  "realEmailSent": false,
+  "renderOrDnsChanged": false,
+  "defaultFrontendEnabled": false,
+  "diskRequired": false,
+  "providerDuplicateProtectionAcrossRestartAndInstances": true,
+  "localRateLimitsPerProcess": true,
+  "memoryCapacityFailClosed": true,
+  "noFilesystemStorage": true
+}

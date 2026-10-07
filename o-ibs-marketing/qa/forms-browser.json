@@ -1,0 +1,18 @@
+{
+  "testOnly": true,
+  "realEmailsSent": false,
+  "actualLocalService": true,
+  "providerMocked": true,
+  "configuredAxeAudits": 6,
+  "widths": [
+    1440,
+    390,
+    360
+  ],
+  "applicationSuccess": true,
+  "buttonDisabledDuringRequest": true,
+  "deliveryFailureNeverSucceeds": true,
+  "retryPreservesFields": true,
+  "retrySuccess": true,
+  "errors": []
+}
