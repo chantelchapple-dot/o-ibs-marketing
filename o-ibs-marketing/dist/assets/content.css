@@ -10,3 +10,6 @@
 @media(max-width:600px){.application-options{grid-template-columns:1fr}}
 
 #early-access-form .full{grid-column:1/-1}
+
+/* Native FAQ disclosures reuse the established accessible explanation cards. */
+.faq-list{grid-template-columns:1fr}.faq-list summary{min-height:44px}.workflow-sequence li:last-child{border-bottom:0}

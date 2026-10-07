@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import crypto from 'node:crypto';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
-const routes=['','product','bizzy','features','pricing','about','contact','security','help','ai-data','privacy','terms','popia','paia','early-access'];
+const routes=['','product','bizzy','features','pricing','about','contact','security','help','ai-data','privacy','terms','popia','paia','early-access','faq'];
 const mainHashes=new Set();
 const headers=fs.readFileSync('dist/_headers','utf8'),sitemap=fs.readFileSync('dist/sitemap.xml','utf8');
 for(const route of routes){const html=fs.readFileSync(`dist/${route?route+'/':''}index.html`,'utf8'),canonical='https://o-ibs.co.za/'+route;

@@ -1,0 +1,66 @@
+{
+  "faqKeyboardDisclosures": 17,
+  "noExternalRequests": true,
+  "homepageHTMLBytes": 32187,
+  "homepageHTMLGzipBytes": 8585,
+  "homepageResourceBytes": 64568,
+  "resources": [
+    {
+      "name": "/assets/site.css",
+      "bytes": 14679
+    },
+    {
+      "name": "/assets/product-reference.css",
+      "bytes": 3969
+    },
+    {
+      "name": "/assets/home-dashboard.css",
+      "bytes": 8431
+    },
+    {
+      "name": "/assets/readiness.css",
+      "bytes": 1523
+    },
+    {
+      "name": "/assets/content.css",
+      "bytes": 3097
+    },
+    {
+      "name": "/assets/o-ibs-logo.jpeg",
+      "bytes": 28763
+    },
+    {
+      "name": "/assets/site.js",
+      "bytes": 4106
+    }
+  ],
+  "scripts": [
+    {
+      "file": "contact-contract.mjs",
+      "bytes": 1094
+    },
+    {
+      "file": "contact.js",
+      "bytes": 1144
+    },
+    {
+      "file": "early-access-contract.mjs",
+      "bytes": 1624
+    },
+    {
+      "file": "early-access.js",
+      "bytes": 1582
+    },
+    {
+      "file": "form-delivery.js",
+      "bytes": 2788
+    },
+    {
+      "file": "site.js",
+      "bytes": 4106
+    }
+  ],
+  "fonts": "System font stack; no remote fonts",
+  "coreWebVitals": "Lab payload/risk audit only; no field CWV certification",
+  "changes": "Reuse existing CSS disclosure cards; no additional browser JavaScript or image assets"
+}

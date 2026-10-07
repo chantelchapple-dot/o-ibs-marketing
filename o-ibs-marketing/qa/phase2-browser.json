@@ -14,7 +14,8 @@
     "terms",
     "popia",
     "paia",
-    "early-access"
+    "early-access",
+    "faq"
   ],
   "responsive": [
     {
@@ -541,6 +542,41 @@
       "route": "early-access",
       "width": 360,
       "overflow": false
+    },
+    {
+      "route": "faq",
+      "width": 1920,
+      "overflow": false
+    },
+    {
+      "route": "faq",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "route": "faq",
+      "width": 1024,
+      "overflow": false
+    },
+    {
+      "route": "faq",
+      "width": 768,
+      "overflow": false
+    },
+    {
+      "route": "faq",
+      "width": 430,
+      "overflow": false
+    },
+    {
+      "route": "faq",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "route": "faq",
+      "width": 360,
+      "overflow": false
     }
   ],
   "accessibility": [
@@ -782,6 +818,22 @@
     },
     {
       "route": "early-access",
+      "width": 390,
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "route": "faq",
+      "width": 1440,
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "route": "faq",
       "width": 390,
       "violations": [],
       "incomplete": [

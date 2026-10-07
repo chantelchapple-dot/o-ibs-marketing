@@ -1,0 +1,62 @@
+{
+  "readOnlyApplicationAudit": true,
+  "registrySHA256": "dedee77e04172e14794723f1921b1b518c12dc272a047a7691472ad4baec6191",
+  "advertisedFeatureGroups": {
+    "BASIC": [
+      "customers",
+      "quotes",
+      "quote_acceptance",
+      "quote_conversion",
+      "invoices",
+      "customer_payments",
+      "customer_balances",
+      "expenses",
+      "expense_categories",
+      "basic_reports",
+      "bizzy_basic",
+      "requisitions"
+    ],
+    "BUSINESS": [
+      "statements",
+      "credit_notes",
+      "refunds",
+      "suppliers",
+      "accounts_payable",
+      "assets",
+      "depreciation",
+      "banking",
+      "bank_reconciliation",
+      "bank_rules",
+      "smart_matching",
+      "chart_of_accounts",
+      "general_ledger",
+      "manual_journals",
+      "trial_balance",
+      "profit_loss",
+      "balance_sheet",
+      "vat_reports",
+      "period_locks",
+      "accounting_integrity",
+      "advanced_reports",
+      "bizzy_bookkeeping"
+    ],
+    "COMPLETE": [
+      "inventory",
+      "stock_control",
+      "stock_ledger",
+      "stock_reservations",
+      "stock_availability",
+      "stock_valuation",
+      "reorder_planning",
+      "purchase_orders",
+      "goods_received",
+      "inventory_accounting",
+      "inventory_reports",
+      "bizzy_inventory"
+    ]
+  },
+  "planChecks": 138,
+  "capturePermissionsAndReviewVerified": true,
+  "unresolvedAdvertisedEntitlements": [],
+  "liveFeatureConfigurationVerified": false
+}
