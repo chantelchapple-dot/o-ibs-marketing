@@ -18,7 +18,7 @@ export function validateSubmission(kind,input){
 const escape=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export function notification(kind,clean){
  const title=kind==='early-access'?'New O-IBS Early Access Application':'New O-IBS Contact Enquiry';
- const labels={name:'Name',business:'Business',email:'Email',businessType:'Type of business',employees:'Approximate employees',plan:'Plan of interest',areas:'Areas of interest',message:'Message',privacy:'Privacy acknowledgment',noticeVersion:'Privacy notice version'};
+ const labels={name:'Name',business:'Business',email:'Email',topic:'Category / topic',businessType:'Type of business',employees:'Approximate employees',plan:'Plan of interest',areas:'Areas of interest',message:'Message',privacy:'Privacy acknowledgment',noticeVersion:'Privacy notice version'};
  const entries=Object.entries(clean).map(([key,value])=>[labels[key],Array.isArray(value)?value.join(', '):value===true?'Acknowledged':String(value||'(not supplied)')]);
  return {subject:`${title} — ${clean.business}`,reply_to:clean.email,text:title+'\n\n'+entries.map(([k,v])=>`${k}: ${v}`).join('\n')+'\n\nReview manually. No account, company, subscription or financial record has been created.',html:`<h1>${title}</h1><dl>${entries.map(([k,v])=>`<dt><strong>${escape(k)}</strong></dt><dd style="white-space:pre-wrap">${escape(v)}</dd>`).join('')}</dl><p>Review manually. No account, company, subscription or financial record has been created.</p>`};
 }
