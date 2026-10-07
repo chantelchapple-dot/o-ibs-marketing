@@ -3,10 +3,10 @@
   "releaseReady": false,
   "issues": [
     "Approved production sign-in URL is missing.",
-    "Trial/onboarding access is not approved; Request Early Access remains the truthful CTA.",
+    "Public onboarding is not open; Start Early Access leads to the unavailable enquiry preview.",
     "Neither an approved enquiry service nor a confirmed contact address is configured.",
     "Final legal policies and the responsible legal entity/contact details need professional approval.",
-    "Plan entitlements and advertised features need verification against the application source."
+    "Plan details remain provisional; final commercial availability, pricing and limits need approval."
   ],
   "trialReady": false,
   "contactEnabled": false,

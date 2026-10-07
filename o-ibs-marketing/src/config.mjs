@@ -25,9 +25,9 @@ export function readConfig(overrides={}){
   const contactEmail=address('PUBLIC_CONTACT_EMAIL'),supportEmail=address('PUBLIC_SUPPORT_EMAIL'),privacyEmail=address('PUBLIC_PRIVACY_EMAIL');
   const releaseIssues=[];
   if(!app)releaseIssues.push('Approved production sign-in URL is missing.');
-  if(!trialReady)releaseIssues.push('Trial/onboarding access is not approved; Request Early Access remains the truthful CTA.');
+  if(!trialReady)releaseIssues.push('Public onboarding is not open; Start Early Access leads to the unavailable enquiry preview.');
   if(!contactEnabled&&!contactEmail)releaseIssues.push('Neither an approved enquiry service nor a confirmed contact address is configured.');
   releaseIssues.push('Final legal policies and the responsible legal entity/contact details need professional approval.');
-  releaseIssues.push('Plan entitlements and advertised features need verification against the application source.');
+  releaseIssues.push('Plan details remain provisional; final commercial availability, pricing and limits need approval.');
   return {origin,app,trial:trialReady?trial:'',trialReady,contactEndpoint:contactEnabled?contactEndpoint:'',contactEnabled,contactEmail,supportEmail,privacyEmail,releaseIssues};
 }
