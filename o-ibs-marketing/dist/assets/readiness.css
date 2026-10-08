@@ -13,3 +13,9 @@
 .hd-brand{padding:0 0 22px}.card .feature-title{font-size:1.4rem;letter-spacing:-.02em;line-height:1.12}.plan h2{font-size:1.8rem;margin-top:22px;letter-spacing:-.02em}.section[id],h2[id]{scroll-margin-top:110px}
 
 .split>*,.grid>*,.form-grid>*{min-width:0}.hd-kpi{min-width:0}.hd-kpi strong{white-space:normal;overflow-wrap:anywhere}.hd-sidebar li span{min-width:0;overflow-wrap:anywhere}@media(max-width:600px){.text-link{white-space:normal;overflow-wrap:anywhere}.hd-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Production access remains unavailable until separately approved. */
+.login-unavailable{color:var(--muted);cursor:default;white-space:nowrap;line-height:1.3}
+.login-unavailable small{display:block;font-size:.65rem}
+.nav-actions{gap:16px}.nav-actions .btn{white-space:nowrap}
+@media(min-width:1101px){.nav{gap:24px}.navlinks{gap:22px}}

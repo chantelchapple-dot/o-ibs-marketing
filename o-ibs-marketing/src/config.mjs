@@ -16,7 +16,15 @@ export function readConfig(overrides={}){
   }
   const origin=publicUrl('PUBLIC_SITE_URL','https://o-ibs.co.za');
   if(new URL(origin).pathname!=='/'||new URL(origin).hash)throw Error('PUBLIC_SITE_URL must be an origin without a path');
-  const app=publicUrl('PUBLIC_APP_URL'),trial=publicUrl('PUBLIC_TRIAL_URL');
+  const appOrigin=publicUrl('PUBLIC_APP_URL','https://app.o-ibs.co.za');
+  if(appOrigin!=='https://app.o-ibs.co.za')throw Error('PUBLIC_APP_URL must be the production application origin');
+  const loginReady=enabled('PUBLIC_LOGIN_READY'),signupReady=enabled('PUBLIC_SIGNUP_READY');
+  function appDestination(key,ready){
+    const value=publicUrl(key);if(!value){if(ready)throw Error(`${key} is required before enabling application access`);return '';}
+    const u=new URL(value);if(u.origin!==appOrigin||u.hash)throw Error(`${key} must use the production application origin without a fragment`);
+    return ready?value:'';
+  }
+  const app=appDestination('PUBLIC_LOGIN_URL',loginReady),signup=appDestination('PUBLIC_SIGNUP_URL',signupReady),trial=publicUrl('PUBLIC_TRIAL_URL');
   const trialReady=enabled('PUBLIC_TRIAL_READY');if(trialReady&&!trial)throw Error('Approved trial access requires PUBLIC_TRIAL_URL');
   const formsUrl=publicUrl('PUBLIC_FORMS_API_URL');if(formsUrl){const u=new URL(formsUrl);if(u.pathname!=='/'||u.hash||(!u.hostname.endsWith('.onrender.com')&&!['127.0.0.1','localhost'].includes(u.hostname)))throw Error('Form backend must be an isolated Render origin');}
   const formsEnabled=enabled('PUBLIC_FORMS_ENABLED');if(formsEnabled&&!formsUrl)throw Error('Enabled forms require PUBLIC_FORMS_API_URL');
@@ -32,5 +40,5 @@ export function readConfig(overrides={}){
   if(!contactEnabled)releaseIssues.push('Online enquiries and early-access applications have no active secure delivery/storage service. Email support is available.');
   releaseIssues.push('Final legal policies, Information Officer governance, PAIA manual and privacy procedures need professional approval.');
   releaseIssues.push('Monthly prices are approved; public paid access and final subscription/cancellation terms are not approved.');
-  return {formsEnabled,formsUrl:formsEnabled?formsUrl:'',origin,app,trial:trialReady?trial:'',trialReady,contactEndpoint:contactEnabled?contactEndpoint:'',contactEnabled,contactEmail,supportEmail,privacyEmail,releaseIssues};
+  return {appOrigin,loginReady,signupReady,signup,formsEnabled,formsUrl:formsEnabled?formsUrl:'',origin,app,trial:trialReady?trial:'',trialReady,contactEndpoint:contactEnabled?contactEndpoint:'',contactEnabled,contactEmail,supportEmail,privacyEmail,releaseIssues};
 }
